@@ -1,23 +1,30 @@
-import { Component } from 'react';
+import {useState } from 'react';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 import './App.css';
 
-export default class App extends Component{
-  constructor(props) {
-    super(props);
-    
+const App = () => {
+  const [inputList, setInputList] = useState([]);
+
+  const onAddField = () => {
+    setInputList(inputList.concat(<Input key={inputList.length} onReceiveValue={onReceiveValue}/>))
   }
 
-  onAddField(e) {
-    console.log(e)
+  const onReceiveValue = e => {
+    sum(e.target)
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Button onAddField={this.onAddField}/>
-      </div> 
-    )
-  }
+  return (
+    <div>
+      <Button onAddField={onAddField}/>
+      {inputList}
+    </div>
+  );
+};
+
+export default App;
+
+function sum(...arr) {
+
+  console.dir(...arr)
 }
-
