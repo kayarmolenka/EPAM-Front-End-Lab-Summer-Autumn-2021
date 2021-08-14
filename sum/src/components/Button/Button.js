@@ -4,7 +4,7 @@ function Button(props) {
     return(
         <button
             className="btnAdd"
-            onClick={props.onAddField}>Click here</button>
+            onClick={props.onCalculateSumOfRange}>Click here</button>
     )    
 }
 

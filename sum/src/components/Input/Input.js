@@ -1,9 +1,10 @@
 function Input(props) {
     return (
-        <input 
-            type="number"
-            onChange={props.onReceiveValue}
-            value={0}/>
+        <input
+            id={props.id} 
+            type="text"
+            onChange={props.onChangeValue}
+            value={props.value}/>
     )
 }
 

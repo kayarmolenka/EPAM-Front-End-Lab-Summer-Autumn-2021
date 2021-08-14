@@ -4,27 +4,43 @@ import Input from '../Input/Input';
 import './App.css';
 
 const App = () => {
-  const [inputList, setInputList] = useState([]);
+  const [firstInput, setFirstInput] = useState(0);
+  const [secondInput, setSecondInput] = useState(0);
 
-  const onAddField = () => {
-    setInputList(inputList.concat(<Input key={inputList.length} onReceiveValue={onReceiveValue}/>))
+  const onChangeValue = e => (e.target.id === '1') ? setFirstInput(e.target.value) : setSecondInput(e.target.value);   
+  
+  // const onCalculateSumOfRange = (a, b) => {
+  //   let sumOfRange = 0;
+
+  //   if(a < b) {
+  //     for(let i = a; i <= b; i++) {
+  //       sumOfRange += Number(i);
+  //     }
+  //   } else if(a > b) {
+  //       for(let i = b; i <= a; i++) {
+  //         sumOfRange += Number(i);
+  //       }
+  //   }
+    
+  //   return sumOfRange;
+    
+  // }
+
+  const onCalculateSumOfRange = (a, b) => {
+    const high = Math.max(a, b);
+    const low = Math.min(a, b);
+
+    return high * (high + 1) / 2 - (low - 1) * (low) / 2;
   }
 
-  const onReceiveValue = e => {
-    sum(e.target)
-  }
-
+  
   return (
     <div>
-      <Button onAddField={onAddField}/>
-      {inputList}
+      <Input value={firstInput} onChangeValue={onChangeValue} id={'1'}/>
+      <Input value={secondInput} onChangeValue={onChangeValue} id={'2'}/>
+      <Button onCalculateSumOfRange={() => {console.log(onCalculateSumOfRange(firstInput, secondInput))}}/>
     </div>
   );
 };
 
 export default App;
-
-function sum(...arr) {
-
-  console.dir(...arr)
-}
