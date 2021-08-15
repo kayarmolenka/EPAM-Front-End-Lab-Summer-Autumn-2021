@@ -1,0 +1,7 @@
+.result {
+    color: darkslategrey;
+    background: lawngreen;
+    display: inline-block;
+    font-size: 40px;
+    font-family: cursive;
+}
