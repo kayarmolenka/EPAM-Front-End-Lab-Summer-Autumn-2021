@@ -1,6 +1,7 @@
 import {useState } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import Modal from '../Modal/Modal';
 import SumRage from '../SumRage/SumRage';
 import './App.css';
 
@@ -8,20 +9,40 @@ const App = () => {
   const [firstInput, setFirstInput] = useState(0);
   const [secondInput, setSecondInput] = useState(0);
   const [count, onSetCount] = useState(0);
+  const [modalActive, setModalActive] = useState(false);
+  const [bug, changeBug] = useState('good');
+  const cache = {};
 
   const onChangeValue = e => (e.target.id === '1') ? setFirstInput(e.target.value) : setSecondInput(e.target.value);   
 
   const onCalculateSumOfRange = (a, b) => {
     const high = Math.max(a, b);
     const low = Math.min(a, b);
-
-    return high * (high + 1) / 2 - (low - 1) * (low) / 2;
+   
+    if(cache[[a,b]]) {
+        return cache[[a,b]];
+    } else {
+        let res = high * (high + 1) / 2 - (low - 1) * (low) / 2;
+        cache[[a,b]] = res;
+        return res;
+    }
   }
 
   const omShowResult = () => {
     const newResult = onCalculateSumOfRange(firstInput, secondInput);
-    
-    onSetCount(count - count + newResult);
+
+    if(newResult) {
+      if(newResult > 9007199254740991) {
+        setModalActive(true);
+        changeBug('result is greater than MAX_SAFE_INTEGER');
+      } else {
+        onSetCount(count - count + newResult);
+      } 
+    } else {
+      onSetCount(count);
+      setModalActive(true);
+      changeBug('argument is not a number');
+    } 
   }
 
   return (
@@ -31,6 +52,7 @@ const App = () => {
       <Input value={secondInput} onChangeValue={onChangeValue} id={'2'}/>
       <Button onCalculateSumOfRange={omShowResult}/>
       <SumRage sum={count}/>
+      <Modal active={modalActive} setModalActive={setModalActive} bug={bug}/>
     </div>
   );
 };

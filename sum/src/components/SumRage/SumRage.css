@@ -5,3 +5,8 @@
     font-size: 40px;
     font-family: cursive;
 }
+
+.result_number {
+    background: rgb(129, 36, 114);
+    color: black;
+}

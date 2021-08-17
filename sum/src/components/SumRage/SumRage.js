@@ -9,7 +9,7 @@ export default class SumRage extends Component {
 
     render() {
         return (
-            <div className="result"> Sum of rage is {this.props.sum}</div>
+            <div className="result"> Sum of rage is <span className="result_number">{this.props.sum}</span></div>
         )
     }
 }
