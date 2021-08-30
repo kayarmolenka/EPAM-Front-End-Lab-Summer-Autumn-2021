@@ -1,16 +1,22 @@
+import { useCallback, useMemo } from 'react';
 import './Modal.css';
 
 const Modal = ({active, setModalActive, bug}) => {
     let descriptionError;
 
-    if(bug === 'result is greater than MAX_SAFE_INTEGER') {
-        descriptionError = <IsGreater />
-    } else if(bug === 'argument is not a number') {
-        descriptionError = <IsNotNumber />
-    }
+    useMemo(() => {
+        if(bug === 'result is greater than MAX_SAFE_INTEGER') {
+            descriptionError = <IsGreater />
+        } else if(bug === 'argument is not a number') {
+            descriptionError = <IsNotNumber />
+        }
+    }, [bug])
 
-     return(
-        <div className={active ? "modal active" : "modal"} onClick={() => setModalActive(false)}>
+        
+    const closeModal = useCallback(() => setModalActive(false), [setModalActive]);
+
+    return(
+        <div className={active ? "modal active" : "modal"} onClick={closeModal}>
             <div className={active ? "modal_content active" : "modal_content"} onClick={e => e.stopPropagation()}>
                 {descriptionError}
             </div>
