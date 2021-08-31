@@ -1,37 +1,68 @@
-class Name {
-    constructor(name) {
-        this.name = name;
-    }
+class Base {
+    static #allUsers = []
 
+    constructor(name) {
+      this.name = name;
+      Base.#allUsers.push(name);
+    }
+  
     sayHi() {
-        console.log(this.name);
+      console.log(`Hello, I'm ${this.name}`);
     }
 }
-
-class Stuff extends Name {
-    constructor(stuff) {
-        super();
-        this.stuff= [...stuff];
+  
+class Stuff extends Base {
+    constructor(name, stuff) {
+        super(name);
+        this.stuff = stuff;
     }
 }
 
 class Box extends Stuff {
-    enumerateStuff() {
-        console.log(this.stuff);
+    showStuff() {
+        console.log(`I have ${this.stuff}`);
     }
 }
-
+  
 class User extends Box {
-    constructor(name,surname) {
-        super(name);
+    gender;
+
+    constructor(name, stuff, surname) {
+        super(name, stuff);
         this.surname = surname;
     }
 
-    presentYourself() {
-        console.log(`My full name is ${this.name} ${this.surname}`);
+    set gender(text) {
+        this.gender = text; 
+    }
+    
+    get gender() {
+        return `Your gender is ${this.gender}`
     }
 }
+  
+const data = {
+    kos: {
+        name: "Kanstantsin",
+        stuff: ["watch", "T-shirt", "phone"],
+        surname: "Yarmolenka"
+    }
+};
 
-const kosty = new User('Kanstantsin', 'Yarmolenka')
+const {kos: {name, stuff, surname }} = data;
+  
+const koly = new User("Koly", ["pen", "pencil"], 'Borisenko');
+const kosty = new User(name, stuff, surname);
 
-console.log(kosty)
+console.log('USER Kosty :', kosty);
+console.dir(Base);
+
+console.log(kosty.sayHi());
+console.log(kosty.showStuff());
+
+console.log('USER Koly :', koly);
+console.log(koly.showStuff());
+
+kosty.gender = 'male';
+
+console.log('USER Kosty :', kosty)
