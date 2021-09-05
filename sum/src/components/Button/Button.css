@@ -1,0 +1,14 @@
+.btnAdd {
+    padding: 15px 30px 15px 30px;
+    color: darkmagenta;
+    background: darkorange;
+    border: none;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.btnAdd:hover {
+    cursor: pointer;
+    background-color: deeppink;
+    color: gold;
+}
