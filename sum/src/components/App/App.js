@@ -11,7 +11,7 @@ const App = () => {
   const [count, onSetCount] = useState(0);
   const [modalActive, setModalActive] = useState(false);
   const [bug, changeBug] = useState('good');
-  const cache = {};
+  const [cache, setCache] = useState({});
 
   const onChangeValue = useCallback((e) => {
     return (e.target.id === '1') ? setFirstInput(e.target.value) : setSecondInput(e.target.value)
@@ -22,12 +22,15 @@ const App = () => {
     const low = Math.min(a, b);
    
     if(cache[`${a}-${b}`]) {
-        return cache[[`${a}-${b}`]];
-    } else {
-        let res = high * (high + 1) / 2 - (low - 1) * (low) / 2;
-        cache[`${a}-${b}`] = res;
-        return res;
-    }
+      console.log('reduced')
+      return cache[[`${a}-${b}`]];
+    } 
+
+    let res = high * (high + 1) / 2 - (low - 1) * (low) / 2;
+    setCache({[`${a}-${b}`] : res});
+
+    return res;
+    
   }, [cache])
 
   const omShowResult = () => {

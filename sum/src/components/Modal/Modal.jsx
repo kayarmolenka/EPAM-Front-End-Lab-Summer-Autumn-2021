@@ -2,13 +2,11 @@ import { useCallback, useMemo } from 'react';
 import './Modal.css';
 
 const Modal = ({active, setModalActive, bug}) => {
-    let descriptionError;
-
-    useMemo(() => {
+    const descriptionError = useMemo(() => {
         if(bug === 'result is greater than MAX_SAFE_INTEGER') {
-            descriptionError = <IsGreater />
+            return <IsGreater />
         } else if(bug === 'argument is not a number') {
-            descriptionError = <IsNotNumber />
+            return <IsNotNumber />
         }
     }, [bug])
 
