@@ -9,50 +9,40 @@ class Base {
 }
 
 class Stuff extends Base {
-    constructor(name, ...stuff) {
+    constructor(name, stuff1) {
         super(name);
-        this.stuff = stuff;
+        this.stuff1 = stuff1;
     }
 }
 
 class Box extends Base {
     stuff = [];
     
-    constructor(name, ...stuff1) {
-        super(name);
-        this.stuff.push(stuff1);
-        this.st = this.stuff; 		
+    constructor(name, stuff1, stuff2) {
+        super(name, stuff1);
+        this.stuff = stuff2;
+    }
 }
-
-    getStuffs() {
-        this.st.flat().map(el => console.log(el));
-    } 
-}
-
-const boxKosty = new Box('redBox', 'phone','pen', 'pencil');
 
 class User extends Base {
-    box = {stuff: boxKosty.stuff.flat()};
+    box = []
 
-    constructor(name, surname) {
+    constructor(name, surname, box) {
         super(name);
         this.surname = surname;
-        this.littleBox = this.box;	
-    }
-
-    showStuffs() {
-        console.log(this.littleBox);
+        this.box = box;	
     }
 }
 
-const stuff = new Stuff('stuffes of Kosty','apple','banana','watermelon');
-const kosty = new User('Kanstantsin','Yarmolenka');
+const stuff = new Stuff('Fridge', 'apple, banana, watermelon');
+const box = new Box('Red Box', ['ball', 'racket'], ['pen', 'pencil']);
+const kos = new User('Kanstantsin', 'Yarmolenka', ['phone', 'watch']);
 
 
 console.log('stuff :', stuff);
-console.log('boxKosty :', boxKosty);
-console.log('kosty :', kosty);
+console.log('box :', box);
+console.log('kos :', kos);
 
-kosty.sayHi();
-kosty.showStuffs();
-boxKosty.getStuffs();
+stuff.sayHi();
+box.sayHi();
+kos.sayHi();
