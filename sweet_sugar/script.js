@@ -18,9 +18,9 @@ class Stuff extends Base {
 class Box extends Base {
     stuff = [];
     
-    constructor(name, stuff1, stuff2) {
-        super(name, stuff1);
-        this.stuff = stuff2;
+    constructor(name, stuff) {
+        super(name);
+        this.stuff = stuff;
     }
 }
 
@@ -34,15 +34,25 @@ class User extends Base {
     }
 }
 
-const stuff = new Stuff('Fridge', 'apple, banana, watermelon');
-const box = new Box('Red Box', ['ball', 'racket'], ['pen', 'pencil']);
-const kos = new User('Kanstantsin', 'Yarmolenka', ['phone', 'watch']);
+class Company extends Base {
+    offices = []
 
+    constructor(name, employee, offices) {
+        super(name);
+        this.employee = employee;
+        this.offices = offices;
+    }
+}
+
+
+const stuff = new Stuff('Fridge', 'apple, banana, watermelon');
+const box = new Box('Red Box',  stuff);
+const user = new User('Kanstantsin', 'Yarmolenka', box);
+const company = new Company('EPAM', user, ['Rechitski', 'International'])
 
 console.log('stuff :', stuff);
 console.log('box :', box);
-console.log('kos :', kos);
+console.log('user :', user);
 
-stuff.sayHi();
-box.sayHi();
-kos.sayHi();
+user.box.sayHi()
+console.log('user.box.stuff.stuff1:', user.box.stuff.stuff1)
