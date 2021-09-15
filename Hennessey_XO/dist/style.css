@@ -1,0 +1,1 @@
+body{font-family:sans-serif}.game-wrapper{display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column}.game-zone-field{display:grid;grid-template-columns:repeat(3, 1fr);width:150px}.cell{display:flex;align-items:center;justify-content:center;font-size:40px;width:50px;height:50px;background:#5a7009;border:1px solid #000}.cell:hover{cursor:pointer}
