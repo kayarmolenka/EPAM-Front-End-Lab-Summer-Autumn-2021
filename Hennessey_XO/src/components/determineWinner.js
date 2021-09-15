@@ -1,8 +1,6 @@
-import ResetGame from "./resetGame";
-
 let countStep = 0;
 
-function determineWinner(namePlayer, valuePlayer, idCell, gameField) {
+function determineWinner(gameField) {
   const fieldResult = document.querySelector(".game-zone-result");
 
   if (
@@ -32,7 +30,7 @@ function determineWinner(namePlayer, valuePlayer, idCell, gameField) {
       gameField.childNodes[8].innerText === "X")
   ) {
     fieldResult.innerHTML = "Win player X";
-    ResetGame();
+    
   }
   if (
     (gameField.childNodes[0].innerText === "O" &&
@@ -64,7 +62,7 @@ function determineWinner(namePlayer, valuePlayer, idCell, gameField) {
   }
   countStep++;
   if (countStep === 9) {
-    console.log("Draw");
+    fieldResult.innerHTML = "Draw";
   }
 }
 
