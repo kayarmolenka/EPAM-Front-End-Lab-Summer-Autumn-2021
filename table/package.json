@@ -1,0 +1,33 @@
+{
+  "name": "EPAM-Front-End-Lab-Summer-Autumn-2021",
+  "version": "1.0.0",
+  "description": "EPAM Front-End Lab Summer-Autumn 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kayarmolenka/EPAM-Front-End-Lab-Summer-Autumn-2021.git"
+  },
+  "keywords": [],
+  "author": "Kanstantsin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kayarmolenka/EPAM-Front-End-Lab-Summer-Autumn-2021/issues"
+  },
+  "homepage": "https://github.com/kayarmolenka/EPAM-Front-End-Lab-Summer-Autumn-2021#readme",
+  "devDependencies": {
+    "css-loader": "^6.3.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.3.0",
+    "prettier": "^2.4.1",
+    "prettier-webpack-plugin": "^1.2.0",
+    "sass": "^1.41.1",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0"
+  }
+}
