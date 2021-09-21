@@ -1,12 +1,11 @@
 import { data, createRow } from '../index';
 
 function changeValue(cell) {
-    console.log(cell);
     cell.innerHTML = `<input class="field" value= ${cell.textContent}>`;
   
     const input = document.querySelector(".field");
   
-    input.addEventListener("focusout", (e) => {
+    input.addEventListener("focusout", () => {
         const row = document.querySelector(".first-Row");
         const row2 = document.querySelector(".second-Row");
         row.remove();
@@ -16,8 +15,7 @@ function changeValue(cell) {
         const b = data.secondUser;
 
         if (cell.className === "1" || cell.className === "2" || cell.className === "3") {
-            console.log(cell.className);
-            a[cell.className] = input.value;
+          a[cell.className] = input.value;
         }
 
         data.firstUser = b;
