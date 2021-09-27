@@ -2,26 +2,30 @@ import changeValue from "./components/changeValue";
 import sort from "./components/sort";
 import "./scss/main.scss";
 
-
 const $root = document.querySelector("#root");
 
 export const data = {
-    firstUser: { 1: 1, 2: "Maxim", 3: "Borisenko" },
-    secondUser: { 1: 2, 2: "Andrey", 3: "Aristarx" }
+    firstUser: { id: 1, name: "Maxim", surname: "Borisenko" },
+    secondUser: { id: 2, name: "Andrey", surname: "Aristarx" }
   },
   nameHeaders = ["id", "name", "surname"];
 
 const wrapper = document.createElement("div");
 wrapper.classList.add("wrapper");
 
-const table = document.createElement("table");
-table.classList.add("table");
+let table;
+export function creteTable() {
+    table = document.createElement("table");
+    table.classList.add("table");
+}
 
-function createHeaders() {
-    const th = document.createElement("th");
+creteTable();
+
+export function createHeaders() {
     const tr = document.createElement("tr");
 
     for (let i = 0; i < 3; i++) {
+        const th = document.createElement("th");
         th[i] = document.createElement("th");
         th[i].textContent = nameHeaders[i];
         th[i].setAttribute("id", i);
@@ -34,35 +38,49 @@ createHeaders();
 
 export function createRow(data, classRow) {
     const tr = document.createElement("tr");    
-    const td = document.createElement("td");
 
     tr.classList.add(classRow);
 
     for (let i = 1; i <= 3; i++) {
+        const td = document.createElement("td");
         td[i] = document.createElement("td");
-        td[i].textContent = data[i];
+        td[i].textContent = 1;
         td[i].classList.add(Object.keys(data)[i - 1]);
         
         tr.appendChild(td[i]);
         table.appendChild(tr);
+    }
+    if(tr.className === 'first-Row') {
+        tr.children[0].textContent = data.id;
+        tr.children[1].textContent = data.name;
+        tr.children[2].textContent = data.surname;
+    }
+    if(tr.className === 'second-Row') {
+        tr.children[0].textContent = data.id;
+        tr.children[1].textContent = data.name;
+        tr.children[2].textContent = data.surname;
     }
 }
 
 createRow(data.firstUser, "first-Row");
 createRow(data.secondUser, "second-Row");
 
-wrapper.appendChild(table);
-$root.appendChild(wrapper);
+export function updatePage() {
+    wrapper.appendChild(table);
+    $root.appendChild(wrapper);
+}
+
+updatePage();
 
 table.addEventListener("click", (e) => {
     if (e.target.id === "0") {
-        sort("1");
+        sort("id");
     }
     if (e.target.id === "1") {
-        sort("2");
+        sort("name");
     }
     if (e.target.id === "2") {
-        sort("3");
+        sort("surname");
     }
     if (e.target.nodeName === "TD") {
         changeValue(e.target);
