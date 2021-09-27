@@ -44,10 +44,7 @@ export function createRow(data, classRow) {
     for (let i = 1; i <= 3; i++) {
         const td = document.createElement("td");
         td[i] = document.createElement("td");
-<<<<<<< HEAD
-=======
-        td[i].textContent = 1;
->>>>>>> bf1f5623fc65fa988d52a866056bbe3358847333
+
         td[i].classList.add(Object.keys(data)[i - 1]);
         
         tr.appendChild(td[i]);
