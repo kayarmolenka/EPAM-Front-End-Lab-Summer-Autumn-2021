@@ -1,9 +1,10 @@
-import { data, createRow } from '../index';
+import { data, createRow, createHeaders } from '../index';
 
 function sort(n) {
     if (data.firstUser[n] > data.secondUser[n]) {
         const row = document.querySelector(".first-Row");
         const row2 = document.querySelector(".second-Row");
+        
         row.remove();
         row2.remove();
 
