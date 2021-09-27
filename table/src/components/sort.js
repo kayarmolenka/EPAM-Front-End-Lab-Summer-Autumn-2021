@@ -1,4 +1,4 @@
-import { data, createRow, createHeaders } from '../index';
+import { data, createRow } from '../index';
 
 function sort(n) {
     if (data.firstUser[n] > data.secondUser[n]) {
