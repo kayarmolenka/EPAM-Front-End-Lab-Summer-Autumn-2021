@@ -1,66 +1,46 @@
 let countStep = 0;
 
-function determineWinner(gameField) {
+const ar = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7]
+];
+
+const end = [
+  null, null, null, 
+  null, null, null, 
+  null, null, null
+];
+
+function determineWinner(valuePlayer, idCell) {
   const fieldResult = document.querySelector(".game-zone-result");
 
-  if (
-    (gameField.childNodes[0].innerText === "X" &&
-      gameField.childNodes[1].innerText === "X" &&
-      gameField.childNodes[2].innerText === "X") ||
-    (gameField.childNodes[0].innerText === "X" &&
-      gameField.childNodes[3].innerText === "X" &&
-      gameField.childNodes[6].innerText === "X") ||
-    (gameField.childNodes[0].innerText === "X" &&
-      gameField.childNodes[4].innerText === "X" &&
-      gameField.childNodes[8].innerText === "X") ||
-    (gameField.childNodes[1].innerText === "X" &&
-      gameField.childNodes[4].innerText === "X" &&
-      gameField.childNodes[7].innerText === "X") ||
-    (gameField.childNodes[2].innerText === "X" &&
-      gameField.childNodes[5].innerText === "X" &&
-      gameField.childNodes[8].innerText === "X") ||
-    (gameField.childNodes[2].innerText === "X" &&
-      gameField.childNodes[4].innerText === "X" &&
-      gameField.childNodes[6].innerText === "X") ||
-    (gameField.childNodes[3].innerText === "X" &&
-      gameField.childNodes[4].innerText === "X" &&
-      gameField.childNodes[5].innerText === "X") ||
-    (gameField.childNodes[6].innerText === "X" &&
-      gameField.childNodes[7].innerText === "X" &&
-      gameField.childNodes[8].innerText === "X")
-  ) {
-    fieldResult.innerHTML = "Win player X";
-    
+  end[idCell - 1] = valuePlayer;
+
+  for (let i = 0; i < ar.length; i++) {
+    if (
+      end[ar[i][0] - 1] === "X" &&
+      end[ar[i][1] - 1] === "X" &&
+      end[ar[i][2] - 1] === "X"
+    ) {
+      fieldResult.innerHTML = "Win player X";
+    }
+    if (
+      end[ar[i][0] - 1] === "O" &&
+      end[ar[i][1] - 1] === "O" &&
+      end[ar[i][2] - 1] === "O"
+    ) {
+      fieldResult.innerHTML = "Win player O";
+    }
   }
-  if (
-    (gameField.childNodes[0].innerText === "O" &&
-      gameField.childNodes[1].innerText === "O" &&
-      gameField.childNodes[2].innerText === "O") ||
-    (gameField.childNodes[0].innerText === "O" &&
-      gameField.childNodes[3].innerText === "O" &&
-      gameField.childNodes[6].innerText === "O") ||
-    (gameField.childNodes[0].innerText === "O" &&
-      gameField.childNodes[4].innerText === "O" &&
-      gameField.childNodes[8].innerText === "O") ||
-    (gameField.childNodes[1].innerText === "O" &&
-      gameField.childNodes[4].innerText === "O" &&
-      gameField.childNodes[7].innerText === "O") ||
-    (gameField.childNodes[2].innerText === "O" &&
-      gameField.childNodes[5].innerText === "O" &&
-      gameField.childNodes[8].innerText === "O") ||
-    (gameField.childNodes[2].innerText === "O" &&
-      gameField.childNodes[4].innerText === "O" &&
-      gameField.childNodes[6].innerText === "O") ||
-    (gameField.childNodes[3].innerText === "O" &&
-      gameField.childNodes[4].innerText === "O" &&
-      gameField.childNodes[5].innerText === "O") ||
-    (gameField.childNodes[6].innerText === "O" &&
-      gameField.childNodes[7].innerText === "O" &&
-      gameField.childNodes[8].innerText === "O")
-  ) {
-    fieldResult.innerHTML = "Win player O";
-  }
+
   countStep++;
+
   if (countStep === 9) {
     fieldResult.innerHTML = "Draw";
   }

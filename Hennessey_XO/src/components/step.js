@@ -10,11 +10,11 @@ const $gameZoneField = document.querySelector(".game-zone-field");
     if (player === "Player X") {
       sell.innerHTML = "X";
       changePlayer();
-      determineWinner(e.target.parentNode);
+      determineWinner(sell.innerText, sell.id);
     } else {
       sell.innerHTML = "O";
       changePlayer();
-      determineWinner(e.target.parentNode);
+      determineWinner(sell.innerText, sell.id);
     }
   });
 }
