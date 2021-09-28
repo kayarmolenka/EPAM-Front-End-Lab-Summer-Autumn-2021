@@ -1,0 +1,29 @@
+body {
+    font-family: cursive;
+    .game-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        .game-zone-field {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 150px;
+            .cell {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 40px;
+                width: 50px;
+                height: 50px;
+                background: rgb(90, 112, 9);
+                border: 1px solid black;
+            }
+            .cell:hover {
+                cursor: pointer;
+                background: red;
+            }
+        }
+    }
+}
