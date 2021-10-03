@@ -1,23 +1,47 @@
-import { data, createRow, createHeaders } from '../index';
+import { data, createRow, createHeaders } from "../index";
 
-function sort(n) {
-    if (data.firstUser[n] > data.secondUser[n]) {
-        const row = document.querySelector(".first-Row");
-        const row2 = document.querySelector(".second-Row");
-        
-        row.remove();
-        row2.remove();
+function sort(nameCell) {
+  function sss() {
+    data.sort(function (a, b) {
+      if (nameCell === "name") {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      }
+      if (nameCell === "id") {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+        return 0;
+      }
+      if (nameCell === "surname") {
+        if (a.surname > b.surname) {
+          return 1;
+        }
+        if (a.surname < b.surname) {
+          return -1;
+        }
+        return 0;
+      }
+    });
+    re_render();
+  }
+  sss();
 
-        const a = data.firstUser;
-        const b = data.secondUser;
+  function re_render() {
+    const tr = document.querySelectorAll("tr");
+    tr.forEach((el) => el.remove());
 
-        data.firstUser = b;
-        data.secondUser = a;
-
-        createRow(data.firstUser, "first-Row");
-        createRow(data.secondUser, "second-Row");
-        console.log(data);
-    }
+    createHeaders();
+    createRow();
+  }
 }
 
 export default sort;
