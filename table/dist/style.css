@@ -1,0 +1,1 @@
+body{font-family:sans-serif}body .wrapper{display:flex;justify-content:center;align-items:center;height:100vh}body .wrapper .table{border:1px solid #000;border-collapse:collapse}body .wrapper .table td,body .wrapper .table th{border:1px solid #000;padding:20px}body .wrapper .table th:hover{cursor:pointer;background:gray}
