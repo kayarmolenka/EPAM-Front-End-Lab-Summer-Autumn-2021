@@ -8,10 +8,7 @@ function changeValue(e) {
 
   input.addEventListener("focusout", () => {
     data.forEach((obj) => {
-      if (
-        cell.classList.contains("10") &&
-        Number(obj.id) === Number(cell.classList[1])
-      ) {
+      if (cell.classList.contains("10") && Number(obj.id) === Number(cell.classList[1])) {
         obj.id = input.value;
       }
       if (cell.classList.contains("11") && obj.name === cell.classList[1]) {

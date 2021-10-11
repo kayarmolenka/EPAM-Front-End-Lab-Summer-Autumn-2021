@@ -77,6 +77,7 @@ table.addEventListener("click", (e) => {
     changeValue(e);
   }
   if (e.target.nodeName === "TH") {
+    // console.log(e.target.textContent);
     sort(e.target.textContent);
   }
 });
