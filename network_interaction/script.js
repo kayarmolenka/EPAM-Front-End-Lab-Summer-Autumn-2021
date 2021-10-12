@@ -3,6 +3,7 @@ const $list = document.querySelector("#sel");
 const content = document.createElement("div");
 
 function createContent(array, value) {
+  content.innerHTML = "";
   array.forEach((el) => {
     const wrapperForData = document.createElement("div");
     wrapperForData.classList.add("item");
@@ -12,30 +13,34 @@ function createContent(array, value) {
   });
 }
 
-$list.addEventListener("change", () => {
-  $list.options[0].disabled = true;
-  if ($list.value === "title") {
-    fetch(`https://api.publicapis.org/entries`)
-      .then((res) => res.json())
-      .then((res) => {
-        content.innerHTML = "";
-        createContent(res.entries, "API");
-      })
-      .catch((err) => console.log("ERROOR!!!", err));
-  }
-  if ($list.value === "category") {
-    fetch(`https://api.publicapis.org/categories`)
-      .then((res) => res.json())
-      .then((categories) => {
-        content.innerHTML = "";
-        createContent(categories);
-      })
-      .catch((err) => console.log("ERROOR!!!", err));
-  }
-});
-
-$root.append(content);
+function takeFetch(url) {
+  fetch(`https://api.publicapis.org/${url}`)
+    .then((res) => res.json())
+    .then((res) => {
+      switch (url) {
+        case "entries":
+          createContent(res.entries, "API");
+          break;
+        default:
+          createContent(res);
+          break;
+      }
+    })
+    .catch((err) => console.log("ERROOR!!!", err));
+}
 
 function generatingNumbers() {
   return Math.round(Math.random() * 250);
 }
+
+$list.addEventListener("change", () => {
+  $list.options[0].disabled = true;
+  if ($list.value === "title") {
+    takeFetch("entries");
+  }
+  if ($list.value === "category") {
+    takeFetch("categories");
+  }
+});
+
+$root.append(content);
