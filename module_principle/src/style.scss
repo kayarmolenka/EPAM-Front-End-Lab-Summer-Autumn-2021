@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #sel {
+        width: 100px;
+        border: 1px solid gold;
+        border-radius: 5px;
+        background: gold;
+        color: green;
+        padding: 10px;
+    }
+}
+
+.item {
+    border: 1px solid black;
+    margin-top: 5px;
+    text-align: center;
+}
