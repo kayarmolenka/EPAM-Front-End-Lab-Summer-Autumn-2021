@@ -17,15 +17,14 @@ function generatingNumbers() {
   return Math.round(Math.random() * 250);
 }
 
-async function listener() {
+function listener() {
   $list.addEventListener("change", () => {
-    const dynamicImport = await import("./takeFetch");
     $list.options[0].disabled = true;
     if ($list.value === "title") {
-      dynamicImport("entries");
+      import("./takeFetch.js").then((module) => module.default("entries"));
     }
     if ($list.value === "category") {
-      dynamicImport("categories");
+      import("./takeFetch.js").then((module) => module.default("categories"));
     }
   });
 }
