@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkday_night=self.webpackChunkday_night||[]).push([[252],{252:(t,e,n)=>{n.r(e),n.d(e,{default:()=>c});var s=n(356);const c=function(t){fetch(`https://api.publicapis.org/${t}`).then((t=>t.json())).then((e=>{"entries"===t?(0,s.K)(e.entries,"API"):(0,s.K)(e)})).catch((t=>console.log("ERROOR!!!",t)))}}}]);
